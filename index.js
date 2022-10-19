@@ -1,11 +1,14 @@
+//Emmet
 const wordE1 = document.getElementById('word');
 const wrongLettersE1 = document.getElementById('wrong-letters');
+const pointsContainer = document.querySelector('.points');
 const playAgainBtn = document.getElementById('play-button');
 const popup = document.getElementById('popup-container');
 const notification = document.getElementById('notification-container');
 const finalMessage = document.getElementById('final-message');
 const shuffledWord = document.getElementById('shuffle-word');
-const wrongLimit = 6;
+const figureParts= document.querySelectorAll(".figure-part");
+const wrongLimit = figureParts.length;
 const img = document.getElementById('img');
 const words = [
     {word: 'carbomero', img: './images/image1.png'},
@@ -13,7 +16,8 @@ const words = [
     {word: 'carbono', img: './images/image3.png'},
     {word: 'sodio', img: './images/image4.png'}
 ];
-
+let points = 0;
+updatePoints();
 let selectedWord = "";
 selectWord(Math.floor(Math.random() * words.length));
 
@@ -35,6 +39,8 @@ function displayWord(){
 
     const innerWord = wordE1.innerText.replace(/\n/g, '');
     if(innerWord === selectedWord){
+        points += 10;
+        updatePoints();
         finalMessage.innerText = 'Felicitaciones sigue la prueba! 😃';
         popup.style.display= 'flex';
     }
@@ -47,11 +53,16 @@ function updateWrongLetterE1(){
     ${wrongLetters.length > 0 ? '<p>Letra incorrecta</p>' : ''}
     ${wrongLetters.map(letter => `<span>${letter}</span>`)}
     `;
+
+    //Muestra las partes del ahorcado
+    if(wrongLetters.length > 0) figureParts[wrongLetters.length - 1]?.classList.add("show");
  
     //Comprobar si perdió
     if(wrongLetters.length === wrongLimit){
         finalMessage.innerText = 'Perdiste. 😕';
         popup.style.display = 'flex';
+        points -= 5;
+        updatePoints();
     }
 }
 
@@ -70,6 +81,10 @@ function selectWord(index) {
     selectedWord = selected.word;
     img.setAttribute('src', selected.img);
 //shuffledWord.innerText = `${selectedWord.split("").sort(() => (Math.random() - 0.5)).join("")}`;
+}
+
+function updatePoints() {
+    pointsContainer.innerHTML = "" + points + " puntos";
 }
 
 //Todas las letras
@@ -101,6 +116,7 @@ window.addEventListener('keydown', e =>{
 playAgainBtn.addEventListener('click', () => {
     correctLetters.splice(0);
     wrongLetters.splice(0);
+    figureParts.forEach(part => part.classList.remove("show"));
     const selected = Math.floor(Math.random() * words.length);
     selectWord(selected);
     //shuffledWord.innerText = `${selected.split("").sort(() => (Math.random() - 0.5)).join("")}`;

@@ -4,7 +4,7 @@
 
 body{
     background-color: #4f345a;
-    color: #fff;
+    color: #000;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
@@ -13,19 +13,26 @@ body{
     height: 80vh;
     margin: 0;
     overflow: hidden;
+    background-image: url("./images/screen.png");
+    background-size: cover;
 }
 
 h1{
     margin: 20px 0 0;
 }
 
-.wrong-letters-container{
+.wrong-letters-container,
+.points-container {
     position: absolute;
     top: 20px;
     right: 20px;
     display: flex;
     flex-direction: column;
     text-align: right;
+}
+
+.points-container {
+    top: 100px;
 }
 
 .wrong-letters-container p{
@@ -108,4 +115,51 @@ h1{
 
 .notification-container.show{
     transform: translateY(-50px);
+}
+
+.figure-part{
+    position: absolute;
+    left: 50px;
+    width: 50px;
+    display: none;
+}
+
+.figure{
+    position: absolute;
+    left: 18%;
+    top: 35%;
+    transform: scale(1.5);
+
+}
+
+#head{
+    transform: translateY(-110px) scale(2.3);
+    z-index: 3;
+}
+
+#body{
+    transform: translate(-38px, 8px) scale(1.5);
+    z-index: 2;
+}
+
+#left-arm{
+    transform: translate(-75px, 0px);
+    z-index: 4;
+}
+
+#right-arm{
+    width: 30px;
+}
+
+#right-leg{
+    transform: translate(-29px, 122px) scale(0.8);
+}
+
+#left-leg{
+    transform: translate(-64px, 139px);
+
+}
+
+.show{
+    display: block;
 }
