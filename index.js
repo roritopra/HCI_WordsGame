@@ -14,7 +14,7 @@ const words = [
     {word: 'carbomero', img: './images/image1.png'},
     {word: 'trietanolamina', img: './images/image2.png'},
     {word: 'carbono', img: './images/image3.png'},
-    {word: 'sodio', img: './images/image4.png'}
+    {word: 'glicerina', img: './images/image4.png'}
 ];
 let points = 0;
 updatePoints();
