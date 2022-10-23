@@ -8,6 +8,7 @@ const notification = document.getElementById('notification-container');
 const finalMessage = document.getElementById('final-message');
 const shuffledWord = document.getElementById('shuffle-word');
 const figureParts= document.querySelectorAll(".figure-part");
+const instructionScreen = document.querySelectorAll("instruction");
 const wrongLimit = figureParts.length;
 const img = document.getElementById('img');
 const words = [
@@ -24,7 +25,21 @@ selectWord(Math.floor(Math.random() * words.length));
 const correctLetters = [];
 const wrongLetters = [];
 
+//cambiar instrucciones
+instructionScreen.onclick = function(){
+    let myInstruction = instructionScreen.getAttribute('src');
+    if(myInstruction === "game-container"){
+        instructionScreen.setAttribute('div', "game-container");
+    }
+    else{
+        instructionScreen.setAttribute('src', "instruction")
+    }
+}
+
+
 //Mostrar la palabra en las lineas
+
+
 function displayWord(){
     wordE1.innerHTML = `
     ${selectedWord.split('').map(
