@@ -171,8 +171,14 @@ h1{
 }
 
 .subtitle{
-    font-size: 25px;
-    margin-bottom: 4%;
+    font-size: 40px;
+    margin-bottom: 60px;
+    margin-top: auto;
+    width: 512px;
+    background-color: rgba(255, 255, 255, 0.452);
+    padding: 10px;
+    border-radius: 10px;
+    display: inline-block;
 }
 
 #wrong-letters{
