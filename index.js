@@ -1,7 +1,7 @@
 //Emmet
 const wordE1 = document.getElementById('word');
 const wrongLettersE1 = document.getElementById('wrong-letters');
-const pointsContainer = document.querySelector('.points');
+const pointsContainer = document.querySelector('.score');
 const playAgainBtn = document.getElementById('play-button');
 const popup = document.getElementById('popup-container');
 const notification = document.getElementById('notification-container');
@@ -17,7 +17,7 @@ const words = [
     {word: 'carbono', img: './images/image3.png'},
     {word: 'glicerina', img: './images/image4.png'}
 ];
-let points = 0;
+let score = 0;
 updatePoints();
 let selectedWord = "";
 selectWord(Math.floor(Math.random() * words.length));
@@ -25,20 +25,19 @@ selectWord(Math.floor(Math.random() * words.length));
 const correctLetters = [];
 const wrongLetters = [];
 
-//cambiar instrucciones
-instructionScreen.onclick = function(){
-    let myInstruction = instructionScreen.getAttribute('src');
-    if(myInstruction === "game-container"){
-        instructionScreen.setAttribute('div', "game-container");
-    }
-    else{
-        instructionScreen.setAttribute('src', "instruction")
-    }
+//cambiar de nivel
+
+function changeLevelScore() {
+    window.location.href = '/screen-score';
+}
+
+function saveScore(score) {
+    localStorage.setItem("score", score);
+    
 }
 
 
 //Mostrar la palabra en las lineas
-
 
 function displayWord(){
     wordE1.innerHTML = `
@@ -54,7 +53,7 @@ function displayWord(){
 
     const innerWord = wordE1.innerText.replace(/\n/g, '');
     if(innerWord === selectedWord){
-        points += 10;
+        score += 10;
         updatePoints();
         finalMessage.innerText = 'Felicitaciones sigue la prueba! 😃';
         popup.style.display= 'flex';
@@ -76,7 +75,7 @@ function updateWrongLetterE1(){
     if(wrongLetters.length === wrongLimit){
         finalMessage.innerText = 'Perdiste. 😕';
         popup.style.display = 'flex';
-        points -= 5;
+        score -= 5;
         updatePoints();
     }
 }
@@ -104,8 +103,15 @@ function countdown(minutes, seconds) {
     tick();
 }
 
-countdown(5, 05);
+countdown(2, 05);
 
+function changeLevel(){
+    if((countdown) === 0){ 
+    }
+    else{
+       changeLevelScore() 
+    }   
+}
 
 //Mostrar la notificación
 function showNotification(){
@@ -125,7 +131,8 @@ function selectWord(index) {
 }
 
 function updatePoints() {
-    pointsContainer.innerHTML = "" + points + " puntos";
+    pointsContainer.innerHTML = "" + score + " puntos";
+    
 }
 
 //Todas las letras
@@ -167,4 +174,3 @@ playAgainBtn.addEventListener('click', () => {
 });
 
 displayWord();
-
