@@ -202,10 +202,12 @@ h1{
 
 }
 
-.instruction{
+
+
+#hidden{
     position: absolute;
-    width: 1550px;
-    top: 80px;
+    width: 1250px;
+    top: 5px;
     border-radius: 61px;
     align-items: center;
     
